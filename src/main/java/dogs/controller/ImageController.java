@@ -26,8 +26,8 @@ public class ImageController {
         return image.getImage();
     }
 
-    @PostMapping("/api/upload")
-    public Image uploadFile(@RequestParam MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @PostMapping("/api/upload/{id}")
+    public Image uploadFile(@PathVariable Long id, @RequestParam MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws IOException {
         Image image = new Image();
         image.setName(file.getOriginalFilename());
         image.setImage(file.getBytes());
