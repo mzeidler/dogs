@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Data
@@ -20,4 +19,18 @@ public class Dog {
     private Long id;
 
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    private BigDecimal weight;
+
+    private Date born;
+
+    private Boolean nutered;
+
+    private Boolean vaccinated;
+
+    private String description;
+
 }
