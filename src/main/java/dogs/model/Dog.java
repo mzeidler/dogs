@@ -25,7 +25,7 @@ public class Dog {
 
     private BigDecimal weight;
 
-    private Date born;
+    private String born;
 
     private Boolean nutered;
 
