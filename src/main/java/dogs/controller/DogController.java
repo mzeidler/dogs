@@ -5,6 +5,8 @@ import dogs.service.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class DogController {
@@ -15,6 +17,11 @@ public class DogController {
     @GetMapping("/api/dog/{id}")
     public Dog findById(@PathVariable Long id) {
         return dogService.getDog(id);
+    }
+
+    @GetMapping("/api/dogs")
+    public List<Dog> findAll() {
+        return dogService.findAll();
     }
 
     @PostMapping("/api/dog/save")

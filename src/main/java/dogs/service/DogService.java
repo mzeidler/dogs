@@ -6,6 +6,7 @@ import dogs.repo.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,6 +14,10 @@ public class DogService {
 
     @Autowired
     private DogRepository dogRepository;
+
+    public List<Dog> findAll() {
+        return dogRepository.findAll();
+    }
 
     public Dog saveDog(Dog dog) {
         if (dog.getId() == null) {
