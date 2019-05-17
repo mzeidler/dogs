@@ -22,6 +22,11 @@ public class Image {
     private Long size;
 
     @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "dogId")
+    private Dog dog;
+
+    @JsonIgnore
     @Lob
     private byte[] image;
 

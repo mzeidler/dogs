@@ -1,5 +1,6 @@
 package dogs.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,4 +35,6 @@ public class Dog {
 
     private String description;
 
+    @OneToMany(mappedBy = "dog", cascade = CascadeType.ALL)
+    private List<Image> images;
 }

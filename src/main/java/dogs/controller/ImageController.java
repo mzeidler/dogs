@@ -1,6 +1,8 @@
 package dogs.controller;
 
+import dogs.model.Dog;
 import dogs.model.Image;
+import dogs.service.DogService;
 import dogs.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,6 +21,8 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private DogService dogService;
 
     @GetMapping(value = "/api/image/{id}",  produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getImage(@PathVariable Long id) throws IOException {
@@ -32,6 +36,12 @@ public class ImageController {
         image.setName(file.getOriginalFilename());
         image.setImage(file.getBytes());
         image.setSize(file.getSize());
+
+        Dog dog = dogService.getDog(id);
+        if (dog != null) {
+            image.setDog(dog);
+        }
+
         return imageService.save(image);
     }
 }
