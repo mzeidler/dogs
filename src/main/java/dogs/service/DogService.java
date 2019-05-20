@@ -40,11 +40,21 @@ public class DogService {
         if (isNew) {
             for (Image image : dog.getImages()) {
                 Image imageDB = imageRepository.getOne(image.getId());
+                imageDB.setSortid(image.getSortid());
                 imageDB.setDog(dogDB);
                 imageRepository.saveAndFlush(imageDB);
             }
 
             dogDB.setImages(dog.getImages());
+        } else {
+            for (Image imageDB : dogDB.getImages()) {
+                for (Image i : dog.getImages()) {
+                    if (i.getId().equals(imageDB.getId())) {
+                        imageDB.setSortid(i.getSortid());
+                        imageRepository.saveAndFlush(imageDB);
+                    }
+                }
+            }
         }
 
         return dogDB;
