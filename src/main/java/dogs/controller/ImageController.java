@@ -44,4 +44,17 @@ public class ImageController {
 
         return imageService.save(image);
     }
+
+    @DeleteMapping("/api/image/delete/{id}")
+    public void delete(@PathVariable Long id) {
+
+        Image image = imageService.get(id);
+        if (image.getDog() != null) {
+            Dog dog = image.getDog();
+            dog.getImages().remove(image);
+            dogService.saveDog(dog);
+        }
+
+        imageService.deleteImage(id);
+    }
 }

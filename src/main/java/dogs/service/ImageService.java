@@ -22,4 +22,9 @@ public class ImageService {
         Optional<Image> imageOpt = imageRepository.findById(id);
         return imageOpt.isPresent() ? imageOpt.get() : null;
     }
+
+    public void deleteImage(Long id) {
+        imageRepository.deleteById(id);
+    }
+
 }
