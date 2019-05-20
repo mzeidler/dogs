@@ -30,12 +30,13 @@ public class ImageController {
         return image.getImage();
     }
 
-    @PostMapping("/api/upload/{id}")
-    public Image uploadFile(@PathVariable Long id, @RequestParam MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @PostMapping("/api/upload/{id}/{sortid}")
+    public Image uploadFile(@PathVariable Long id, @PathVariable Long sortid, @RequestParam MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws IOException {
         Image image = new Image();
         image.setName(file.getOriginalFilename());
         image.setImage(file.getBytes());
         image.setSize(file.getSize());
+        image.setSortid(sortid);
 
         Dog dog = dogService.getDog(id);
         if (dog != null) {

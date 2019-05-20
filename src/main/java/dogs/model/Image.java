@@ -30,5 +30,6 @@ public class Image {
     @Lob
     private byte[] image;
 
+    private Long sortid;
 
 }
