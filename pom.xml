@@ -70,7 +70,7 @@
 							<outputDirectory>src/main/resources/static</outputDirectory >
 							<resources>
 								<resource>
-									<directory>../../dogs-frontend/dist/dogs-frontend</directory>
+									<directory>../dogs-frontend/dist/dogs-frontend</directory>
 								</resource>
 							</resources>
 						</configuration>
