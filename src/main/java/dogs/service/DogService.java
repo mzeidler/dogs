@@ -35,6 +35,7 @@ public class DogService {
         dogDB.setVaccinated(dog.getVaccinated());
         dogDB.setNutered(dog.getNutered());
         dogDB.setWeight(dog.getWeight());
+        dogDB.setTitleimage(dog.getTitleimage());
         dogRepository.saveAndFlush(dogDB);
 
         if (isNew) {
