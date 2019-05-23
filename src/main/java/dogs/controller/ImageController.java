@@ -9,9 +9,11 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 @RestController
@@ -42,6 +44,10 @@ public class ImageController {
         if (dog != null) {
             image.setDog(dog);
         }
+
+        BufferedImage bimg = ImageIO.read(file.getInputStream());
+        image.setHeight((long)bimg.getHeight());
+        image.setWidth((long)bimg.getWidth());
 
         return imageService.save(image);
     }

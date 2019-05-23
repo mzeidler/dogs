@@ -21,6 +21,10 @@ public class Image {
 
     private Long size;
 
+    private Long height;
+
+    private Long width;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "dogId")
