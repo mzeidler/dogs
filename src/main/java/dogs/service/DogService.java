@@ -36,6 +36,9 @@ public class DogService {
         dogDB.setNutered(dog.getNutered());
         dogDB.setWeight(dog.getWeight());
         dogDB.setTitleimage(dog.getTitleimage());
+        dogDB.setEn(dog.getEn());
+        dogDB.setHr(dog.getHr());
+        dogDB.setDe(dog.getDe());
         dogRepository.saveAndFlush(dogDB);
 
         if (isNew) {

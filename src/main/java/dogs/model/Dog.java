@@ -40,4 +40,14 @@ public class Dog {
 
     @Lob
     private String titleimage;
+
+    @Lob
+    private String de;
+
+    @Lob
+    private String en;
+
+    @Lob
+    private String hr;
+
 }
