@@ -39,6 +39,8 @@ public class DogService {
         dogDB.setEn(dog.getEn());
         dogDB.setHr(dog.getHr());
         dogDB.setDe(dog.getDe());
+        dogDB.setSize(dog.getSize());
+        dogDB.setAntiparasite(dog.getAntiparasite());
         dogRepository.saveAndFlush(dogDB);
 
         if (isNew) {

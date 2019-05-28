@@ -25,6 +25,9 @@ public class Dog {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Enumerated(EnumType.STRING)
+    private Size size;
+
     private BigDecimal weight;
 
     private String born;
@@ -32,6 +35,8 @@ public class Dog {
     private Boolean nutered;
 
     private Boolean vaccinated;
+
+    private Boolean antiparasite;
 
     private String description;
 
