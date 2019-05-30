@@ -1,6 +1,7 @@
 package dogs.controller;
 
 import dogs.model.Dog;
+import dogs.model.Message;
 import dogs.service.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,4 +35,8 @@ public class DogController {
         dogService.deleteDog(id);
     }
 
+    @PostMapping("/api/dog/message")
+    public void message(@RequestBody Message message) {
+        dogService.message(message);
+    }
 }

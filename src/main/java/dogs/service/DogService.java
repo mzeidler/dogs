@@ -2,8 +2,10 @@ package dogs.service;
 
 import dogs.model.Dog;
 import dogs.model.Image;
+import dogs.model.Message;
 import dogs.repo.DogRepository;
 import dogs.repo.ImageRepository;
+import dogs.repo.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ public class DogService {
 
     @Autowired
     private ImageRepository imageRepository;
+
+    @Autowired
+    private MessageRepository messageRepository;
 
     public List<Dog> findAll() {
         return dogRepository.findAll();
@@ -73,5 +78,9 @@ public class DogService {
 
     public void deleteDog(Long id) {
         dogRepository.deleteById(id);
+    }
+
+    public void message(Message message) {
+        messageRepository.saveAndFlush(message);
     }
 }
