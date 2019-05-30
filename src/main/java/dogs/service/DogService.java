@@ -9,6 +9,8 @@ import dogs.repo.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,6 +83,7 @@ public class DogService {
     }
 
     public void message(Message message) {
+        message.setTimestamp(LocalDateTime.now().plusHours(2)); // TODO: MySQL Timezone
         messageRepository.saveAndFlush(message);
     }
 }

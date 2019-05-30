@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Data
@@ -24,4 +26,11 @@ public class Message {
     private String email;
 
     private String message;
+
+    private String name;
+
+    private String tel;
+
+    private LocalDateTime timestamp;
+
 }
