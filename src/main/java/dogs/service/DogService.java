@@ -23,9 +23,6 @@ public class DogService {
     @Autowired
     private ImageRepository imageRepository;
 
-    @Autowired
-    private MessageRepository messageRepository;
-
     public List<Dog> findAll() {
         return dogRepository.findAll();
     }
@@ -82,8 +79,4 @@ public class DogService {
         dogRepository.deleteById(id);
     }
 
-    public void message(Message message) {
-        message.setTimestamp(LocalDateTime.now().plusHours(2)); // TODO: MySQL Timezone
-        messageRepository.saveAndFlush(message);
-    }
 }

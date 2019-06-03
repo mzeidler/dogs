@@ -35,8 +35,5 @@ public class DogController {
         dogService.deleteDog(id);
     }
 
-    @PostMapping("/api/dog/message")
-    public void message(@RequestBody Message message) {
-        dogService.message(message);
-    }
+
 }
