@@ -39,4 +39,8 @@ public class MessageService {
         });
         return messages;
     }
+
+    public void delete(Long id) {
+        messageRepository.deleteById(id);
+    }
 }

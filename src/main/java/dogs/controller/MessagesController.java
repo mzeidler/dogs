@@ -25,4 +25,10 @@ public class MessagesController {
     public List<Message> findAll() {
         return messageService.findAll();
     }
+
+    @DeleteMapping("/api/message/{id}")
+    public void delete(@PathVariable Long id) {
+        messageService.delete(id);
+    }
+
 }
