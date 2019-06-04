@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -27,30 +28,9 @@ public class VideoController {
     @Autowired
     private DogService dogService;
 
-    @GetMapping(value = "/api/video/{id}",  produces = "video/mp4")
-    public @ResponseBody byte[] getVideo(@PathVariable Long id) throws IOException {
-        Video video = videoService.get(id);
-        return video.getVideo();
-    }
-
-    @PostMapping("/api/video/{id}/{sortid}")
-    public Video uploadFile(@PathVariable Long id, @PathVariable Long sortid, @RequestParam MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Video video = new Video();
-        video.setName(file.getOriginalFilename());
-        video.setVideo(file.getBytes());
-        video.setSize(file.getSize());
-        video.setSortid(sortid);
-
-        Dog dog = dogService.getDog(id);
-        if (dog != null) {
-            video.setDog(dog);
-        }
-
-        BufferedImage bimg = ImageIO.read(file.getInputStream());
-        video.setHeight((long)bimg.getHeight());
-        video.setWidth((long)bimg.getWidth());
-
-        return videoService.save(video);
+    @GetMapping("/api/video/{id}")
+    public Video findById(@PathVariable Long id) {
+        return videoService.get(id);
     }
 
     @DeleteMapping("/api/video/delete/{id}")
@@ -64,6 +44,17 @@ public class VideoController {
         }
 
         videoService.deleteVideo(id);
+    }
+
+    @PostMapping("/api/video/{dogid}")
+    public Video saveVideo(@PathVariable Long dogid, @RequestBody Video video) {
+
+        Dog dog = dogService.getDog(dogid);
+        if (dog != null) {
+            video.setDog(dog);
+        }
+
+        return videoService.save(video);
     }
 
 }

@@ -19,20 +19,12 @@ public class Video {
 
     private String name;
 
-    private Long size;
-
-    private Long height;
-
-    private Long width;
+    private String link;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "dogId")
     private Dog dog;
-
-    @JsonIgnore
-    @Lob
-    private byte[] video;
 
     private Long sortid;
 
