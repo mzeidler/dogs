@@ -43,6 +43,9 @@ public class Dog {
     @OneToMany(mappedBy = "dog", cascade = CascadeType.ALL)
     private List<Image> images;
 
+    @OneToMany(mappedBy = "dog", cascade = CascadeType.ALL)
+    private List<Video> videos;
+
     @Lob
     private String titleimage;
 
