@@ -3,9 +3,11 @@ package dogs.service;
 import dogs.model.Dog;
 import dogs.model.Image;
 import dogs.model.Message;
+import dogs.model.Video;
 import dogs.repo.DogRepository;
 import dogs.repo.ImageRepository;
 import dogs.repo.MessageRepository;
+import dogs.repo.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,9 @@ public class DogService {
 
     @Autowired
     private ImageRepository imageRepository;
+
+    @Autowired
+    private VideoRepository videoRepository;
 
     public List<Dog> findAll() {
         return dogRepository.findAll();
@@ -48,6 +53,7 @@ public class DogService {
         dogRepository.saveAndFlush(dogDB);
 
         if (isNew) {
+
             for (Image image : dog.getImages()) {
                 Image imageDB = imageRepository.getOne(image.getId());
                 imageDB.setSortid(image.getSortid());
@@ -56,7 +62,18 @@ public class DogService {
             }
 
             dogDB.setImages(dog.getImages());
+
+            for (Video video : dog.getVideos()) {
+                Video videoDB = videoRepository.getOne(video.getId());
+                videoDB.setSortid(video.getSortid());
+                videoDB.setDog(dogDB);
+                videoRepository.saveAndFlush(videoDB);
+            }
+
+            dogDB.setVideos(dog.getVideos());
+
         } else {
+
             for (Image imageDB : dogDB.getImages()) {
                 for (Image i : dog.getImages()) {
                     if (i.getId().equals(imageDB.getId())) {
@@ -65,6 +82,16 @@ public class DogService {
                     }
                 }
             }
+
+            for (Video videoDB : dogDB.getVideos()) {
+                for (Video v : dog.getVideos()) {
+                    if (v.getId().equals(videoDB.getId())) {
+                        videoDB.setSortid(v.getSortid());
+                        videoRepository.saveAndFlush(videoDB);
+                    }
+                }
+            }
+
         }
 
         return dogDB;
