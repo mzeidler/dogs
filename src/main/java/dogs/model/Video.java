@@ -32,7 +32,7 @@ public class Video {
 
     @JsonIgnore
     @Lob
-    private byte[] image;
+    private byte[] video;
 
     private Long sortid;
 
