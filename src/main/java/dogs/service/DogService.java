@@ -97,6 +97,10 @@ public class DogService {
         return dogDB;
     }
 
+    public Dog saveAndFlush(Dog dog) {
+        return dogRepository.saveAndFlush(dog);
+    }
+
     public Dog getDog(Long id) {
         Optional<Dog> dogOpt = dogRepository.findById(id);
         return dogOpt.isPresent() ? dogOpt.get() : null;

@@ -40,7 +40,7 @@ public class VideoController {
         if (video.getDog() != null) {
             Dog dog = video.getDog();
             dog.getImages().remove(video);
-            dogService.saveDog(dog);
+            dogService.saveAndFlush(dog);
         }
 
         videoService.deleteVideo(id);
