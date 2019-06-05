@@ -34,7 +34,7 @@ public class DogService {
 
     public Dog saveDog(Dog dog) {
 
-        boolean isNew = dog.getId() == null;
+        boolean isNew = dog.getId() == null || dog.getId() == 0;
 
         Dog dogDB = isNew ? new Dog() : getDog(dog.getId());
         dogDB.setName(dog.getName());

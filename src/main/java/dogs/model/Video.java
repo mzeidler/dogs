@@ -17,7 +17,7 @@ public class Video {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String youtubeid;
 
     private String link;
 
