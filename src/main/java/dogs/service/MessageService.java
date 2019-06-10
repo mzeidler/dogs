@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MessageService {
@@ -31,9 +32,9 @@ public class MessageService {
         List<Message> messages = messageRepository.findAllByOrderByTimestampDesc();
         messages.forEach(message -> {
             if (message.getDogId() != null) {
-                Dog dog = dogRepository.getOne(message.getDogId());
-                if (dog != null) {
-                    message.setDogname(dog.getName());
+                Optional<Dog> dog = dogRepository.findById(message.getDogId());
+                if (dog.isPresent()) {
+                    message.setDogname(dog.get().getName());
                 }
             }
         });
