@@ -19,6 +19,8 @@ public class Image {
 
     private String name;
 
+    private String description;
+
     private Long size;
 
     private Long height;
@@ -29,6 +31,11 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "dogId")
     private Dog dog;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "storyId")
+    private Story story;
 
     @JsonIgnore
     @Lob

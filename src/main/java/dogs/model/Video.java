@@ -17,6 +17,10 @@ public class Video {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
+    private String description;
+
     private String youtubeid;
 
     private String link;
@@ -25,6 +29,11 @@ public class Video {
     @ManyToOne
     @JoinColumn(name = "dogId")
     private Dog dog;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "storyId")
+    private Story story;
 
     private Long sortid;
 
