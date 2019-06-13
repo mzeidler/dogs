@@ -57,6 +57,8 @@ public class DogService {
             for (Image image : dog.getImages()) {
                 Image imageDB = imageRepository.getOne(image.getId());
                 imageDB.setSortid(image.getSortid());
+                imageDB.setName(image.getName());
+                imageDB.setDescription(image.getDescription());
                 imageDB.setDog(dogDB);
                 imageRepository.saveAndFlush(imageDB);
             }
@@ -66,6 +68,8 @@ public class DogService {
             for (Video video : dog.getVideos()) {
                 Video videoDB = videoRepository.getOne(video.getId());
                 videoDB.setSortid(video.getSortid());
+                videoDB.setName(video.getName());
+                videoDB.setDescription(video.getDescription());
                 videoDB.setDog(dogDB);
                 videoRepository.saveAndFlush(videoDB);
             }
@@ -78,6 +82,8 @@ public class DogService {
                 for (Image i : dog.getImages()) {
                     if (i.getId().equals(imageDB.getId())) {
                         imageDB.setSortid(i.getSortid());
+                        imageDB.setName(i.getName());
+                        imageDB.setDescription(i.getDescription());
                         imageRepository.saveAndFlush(imageDB);
                     }
                 }
@@ -87,6 +93,8 @@ public class DogService {
                 for (Video v : dog.getVideos()) {
                     if (v.getId().equals(videoDB.getId())) {
                         videoDB.setSortid(v.getSortid());
+                        videoDB.setName(v.getName());
+                        videoDB.setDescription(v.getDescription());
                         videoRepository.saveAndFlush(videoDB);
                     }
                 }
