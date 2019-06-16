@@ -64,4 +64,21 @@ public class ImageController {
 
         imageService.deleteImage(id);
     }
+
+    @PostMapping("/api/upload2")
+    public String uploadFile2(@RequestParam MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Frontend: <app-ngx-editor [imageEndPoint]="'http://localhost:9002/api/upload2'"
+        Image image = new Image();
+        image.setName(file.getOriginalFilename());
+        image.setImage(file.getBytes());
+        image.setSize(file.getSize());
+
+        BufferedImage bimg = ImageIO.read(file.getInputStream());
+        image.setHeight((long)bimg.getHeight());
+        image.setWidth((long)bimg.getWidth());
+
+        Image imageDB = imageService.save(image);
+
+        return "{ \"url\": \"http://localhost:9002/api/image/"+image.getId()+"\" }"; // URL
+    }
 }
