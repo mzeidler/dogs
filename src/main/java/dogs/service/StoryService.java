@@ -107,4 +107,16 @@ public class StoryService {
         Optional<Story> storyOpt = storyRepository.findById(id);
         return storyOpt.isPresent() ? storyOpt.get() : null;
     }
+
+    public void sortStories(List<Story> stories) {
+
+        for (Story story : stories) {
+            Optional<Story> storyDBOpt = storyRepository.findById(story.getId());
+            if (storyDBOpt.isPresent()) {
+                Story storyDB = storyDBOpt.get();
+                storyDB.setSortid(story.getSortid());
+                storyRepository.saveAndFlush(storyDB);
+            }
+        }
+    }
 }

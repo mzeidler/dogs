@@ -35,4 +35,10 @@ public class StoryController {
     public void delete(@PathVariable Long id) {
         storyService.deleteStory(id);
     }
+
+    @PostMapping("/api/story/sort")
+    public void sort(@RequestBody List<Story> stories) {
+        storyService.sortStories(stories);
+    }
+
 }
